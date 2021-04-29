@@ -1,7 +1,12 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Apr 27 16:58:21 2021
+from tkinter import *
+import numpy as np
+import time 
+from DrawCharacter import DrawCharacter
 
-@author: arday
-"""
+dc = DrawCharacter()
+dc.run()
 
+get1 = dc.get_xybpoints()
+
+print(get1[0,:])
+print(get1[1,:])
