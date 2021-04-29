@@ -26,8 +26,8 @@ def featureExtractor(data):
     
     strokes = strokeDivider(data)  # TODO divides the data into strokes
     strokes = relativeDistance(strokes)  # TODO converts the data to relative distances
-    size = 300  # Variable for how long the end feature vector will be
-    feature_vector = scaleData(strokes,size)  # TODO: remove or interpolate datapoints in the middle of strokes.
+    K = 300  # Variable for how long the end feature vector will be
+    feature_vector = scaleData(strokes,K,scale)  # TODO: remove or interpolate datapoints in the middle of strokes.
     
 
 
@@ -35,7 +35,7 @@ def featureExtractor(data):
     print(data)
     data = centerData(data)  # centers the data to make it start invariant
     print(data)
-    data = scaleData(data)  # scale all data to same size patterns
+    data = resizeData(data)  # scale all data to same size patterns
     print(data)
     return feature_vector
 
