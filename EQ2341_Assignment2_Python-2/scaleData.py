@@ -2,11 +2,11 @@
 
 
 import numpy as np
-from maxDist import *
+from distCalc import *
 #from scipy.spatial import ConvexHull
 #from scipy.spatial.distance import cdist
 
-def scaleData(strokes, size):
+def scaleData(strokes, K, scale):
     
     # Average distance normalization scaling
     #   1. Divide total amount of samples for each stroke proportionally
@@ -22,9 +22,19 @@ def scaleData(strokes, size):
     
     
     # 1. Size division
+    
+    # 6. Scale start & end points:
+    # Input: strokes list [(2,L1),(2,L2),...,(2,Ln)]  containing n strokes relative distances
+    # Output: scale [int] which is a sum of all the distances in the stroke
+    tot_d = 0
+    for stroke in strokes:
+        tot_d = tot_d + totDist(stroke)
+    
+    rescale = tot_d / scale
+    
 
-    # Scale data:
 
-    #   Upscale or downscale?
-    #   Discrete or continous in the end?
-    return data
+    return feature_vector
+
+
+
