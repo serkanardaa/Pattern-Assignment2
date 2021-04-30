@@ -4,6 +4,7 @@ import time
 from DrawCharacter import DrawCharacter
 from start_end_definer import *
 from strokeDivider import *
+from relativeDistance import *
 
 
 
@@ -25,45 +26,23 @@ stroke_list = strokeDivider(get1_clean)
 print("stroke list elements")
 print(stroke_list)
 
+stroke_dist = relativeDistance(stroke_list)
+stroke_dist, start_ends = relativeDistance(stroke_list,True)
+print("stroke element distances")
+print(stroke_dist)
+print(start_ends)
+
 #--------------- Normal Test Area
-# array1 = np.array([1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,1,1,0,0,0,1,1])
 
-# indices = np.where(array1==1)
+# array1 = np.array([[1,2,3],[3,4,5]])
+# array2 = np.array([[3,4],[5,6]])
+# array3 = np.array([[5,6],[7,9]])
 
-# indices_array = indices[0]
-
-# diff_indices = np.diff(indices_array)
-
-# indices2 = np.where(diff_indices != 1)
-
-# indices_array2 = indices2[0]
+# tuple_ar = (array1,array2,array3)
+# list_ar = [array1,array2,array3]
 
 
-# print(indices_array)
-# print(diff_indices)
-# print(indices_array2)
-
-# indices_list = []
-
-# for i in range(len(indices_array2)):
-#     if i == 0:
-#         stroke_index = indices_array[0:indices_array2[i] + 1]
-#     else:
-#         stroke_index = indices_array[indices_array2[i-1] + 1 : indices_array2[i] + 1]
-#     indices_list.append(stroke_index)
-#     if i == len(indices_array2) - 1:
-#         last_stroke_index = indices_array[indices_array2[i] + 1:]
-#         indices_list.append(last_stroke_index)
-    
-    
-# print(indices_list)
-        
-
-# stroke_list  = []
-
-# for s_i in range(len(indices_list)):
-#     stroke = array1[indices_list[s_i]]
-#     stroke_list.append(stroke)
-    
-# print(stroke_list)
-
+# con = np.concatenate(list_ar,axis = 1)
+# condif = np.diff(con)
+# print(con)
+# print(condif)

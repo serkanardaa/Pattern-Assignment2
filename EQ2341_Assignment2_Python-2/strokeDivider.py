@@ -16,7 +16,7 @@ def strokeDivider(data):
     j_indices_array = j_indices[0] #array conversion as we did in indices_array
     if len(j_indices_array) == 0:
         stroke = data[:,indices_array]
-        stroke_list.append(stroke)
+        stroke_list.append(stroke[0:2,:])  # adds x,y and removes b
         return stroke_list
     else:
         for i in range(len(j_indices_array)):
@@ -32,10 +32,6 @@ def strokeDivider(data):
         
         for s_i in range(len(indices_list)):
             stroke = data[:,indices_list[s_i]] # getting the stroke values by using indices of each corresponding stroke
-            stroke_list.append(stroke)
+            stroke_list.append(stroke[0:2,:])  # adds x,y and removes b
             
         return stroke_list
-    
-    
-    
-    
