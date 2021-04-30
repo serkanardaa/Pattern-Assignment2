@@ -34,4 +34,12 @@ def strokeDivider(data):
             stroke = data[:,indices_list[s_i]] # getting the stroke values by using indices of each corresponding stroke
             stroke_list.append(stroke[0:2,:])  # adds x,y and removes b
             
+<<<<<<< HEAD
         return stroke_list
+=======
+        return stroke_list
+    
+    
+    
+    
+>>>>>>> 3dcabfe3714a855234ab0c81f5c0c6005a05a3d4
