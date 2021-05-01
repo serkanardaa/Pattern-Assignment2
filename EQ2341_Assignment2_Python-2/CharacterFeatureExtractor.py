@@ -22,47 +22,20 @@ from scaleData import *
 # Clean data from leading and trailing b = 0
 
 def featureExtractor(data):
-    L_total = data.shape[1]  # length of the input data
-    
+
+    data_clean = start_end_definer(data)
     strokes = strokeDivider(data)  # TODO divides the data into strokes
+    scale = 200
+    strokes = scaleData(strokes,scale)  # TODO: remove or interpolate datapoints in the middle of strokes.
     strokes = relativeDistance(strokes)  # TODO converts the data to relative distances
-    K = 300  # Variable for how long the end feature vector will be
-    feature_vector = scaleData(strokes,K,scale)  # TODO: remove or interpolate datapoints in the middle of strokes.
 
-
+    feature_vector = strokes  # are we done here?
+    """ Old workflow
     data = removeZero(data)  # removes all b = 0 from data
     print(data)
     data = centerData(data)  # centers the data to make it start invariant
     print(data)
     data = resizeData(data)  # scale all data to same size patterns
     print(data)
+    """
     return feature_vector
-
-
-
-# LEGACY FUNCTIONS
-
-def cleanData_old(data):
-    b_data = data[2,:]
-    i = 0
-    for d in data:
-        if d == 1:
-            start = i
-        i+=1
-        break
-    b_data = b_data[start:]
-    
-    prev_1 = True
-    i = 0
-    for d in data:
-        if d == 1:
-            prev_1 = True
-            end = i
-        if d == 0 and prev_1:
-            prev_1 = False
-        i+=1
-
-    # start: first b = 1
-    # end: last b = 1
-    # Remove all points before or after
-    pass

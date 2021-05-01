@@ -11,8 +11,8 @@ import numpy as np
 
 def centerData(data):
     L = data.shape[1]  # length of data
-    width = 200  
-    height = 200
+    width = 100  
+    height = 100
     origin = np.array([width,height])  # defines the origin of the centered palette
     start_xy = np.array([data[0,0], data[1,0]])  # extracts start of data
     offset_xy = origin - start_xy  # offset used to center data

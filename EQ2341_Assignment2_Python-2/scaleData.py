@@ -2,11 +2,12 @@
 
 
 import numpy as np
-from distCalc import *
+from distCalc import totDist 
 #from scipy.spatial import ConvexHull
 #from scipy.spatial.distance import cdist
+from centerData import centerData
 
-def scaleData(strokes, K, scale):
+def scaleData(strokes, scale):
     
     # Average distance normalization scaling
     #   1. Divide total amount of samples for each stroke proportionally
@@ -31,10 +32,14 @@ def scaleData(strokes, K, scale):
         tot_d = tot_d + totDist(stroke)
     
     rescale = tot_d / scale
-    
+
+    for stroke in range(len(strokes)):
+        strokes[stroke] = centerData(strokes[stroke])
+        strokes[stroke] = strokes[stroke] / rescale
+    return strokes
 
 
-    return feature_vector
-
-
-
+"""
+        for j in range(strokes[stroke].shape[0]):
+            strokes[stroke][j] = np.delete(strokes[stroke][j], np.where(strokes[stroke][j+1] - strokes[stroke][j] < threshold))
+"""
