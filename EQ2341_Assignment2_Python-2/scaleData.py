@@ -34,8 +34,8 @@ def scaleData(strokes, scale):
     rescale = tot_d / scale
 
     for stroke in range(len(strokes)):
-        strokes[stroke] = centerData(strokes[stroke])
-        strokes[stroke] = strokes[stroke] / rescale
+        #strokes[stroke] = centerData(strokes[stroke])
+        strokes[stroke] = strokes[stroke] /2 
     return strokes
 
 
