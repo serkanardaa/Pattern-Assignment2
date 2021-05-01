@@ -28,7 +28,6 @@ def featureExtractor(data):
     strokes = relativeDistance(strokes)  # TODO converts the data to relative distances
     K = 300  # Variable for how long the end feature vector will be
     feature_vector = scaleData(strokes,K,scale)  # TODO: remove or interpolate datapoints in the middle of strokes.
-    
 
 
     data = removeZero(data)  # removes all b = 0 from data
