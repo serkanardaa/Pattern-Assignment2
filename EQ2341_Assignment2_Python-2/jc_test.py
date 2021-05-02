@@ -9,6 +9,7 @@ from functions.start_end_definer import *
 from functions.strokeDivider import *
 from functions.relativeDistance import *
 from functions.scaleData import *
+from functions.dist_and_slope import *
 
 def main():
     
@@ -48,8 +49,10 @@ def main():
     
     
     #strokes are combined and relative distances are calculated
-    stroke_dist1 = relativeDistance(stroke_list1)
-    stroke_dist2 = relativeDistance(stroke_list2)
+    #stroke_dist1 = relativeDistance(stroke_list1)
+    #stroke_dist2 = relativeDistance(stroke_list2)
+    stroke_dist1 = dist_and_slope(stroke_list1[0])
+    stroke_dist2 = dist_and_slope(stroke_list2[0])
 
     print(stroke_dist1.shape)
 

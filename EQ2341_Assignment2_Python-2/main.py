@@ -1,5 +1,3 @@
-import CharacterFeatureExtractor
-
 
 def main():
     pass
