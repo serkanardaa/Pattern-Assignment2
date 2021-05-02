@@ -108,7 +108,7 @@ def norm_dist_slope(coordinates,thr):
 
 ### Final feature extractor
 
-def featureExtractor(symbol,thr):
+def featureExtractor(symbol,thr, input_is_dc = True):
 # Extracts feature vector from object of DrawCharacter
 #
 # Input:    symbol              object of DrawCharacter containing a drawn character
@@ -117,9 +117,14 @@ def featureExtractor(symbol,thr):
 # Output:   feature_symbol      feature vector for the given drawn character (2,L-removed_samples)
 #           sampled_symbol      xy-coordinates for character after sampling (2,L-removed_samples)
 
-    xyb_values = symbol.get_xybpoints()
-    xyb_cleaned = removeZero(xyb_values)
-    sampled_symbol = sampler(xyb_cleaned, thr)
-    feature_symbol = norm_dist_slope(sampled_symbol,thr)
-    
+    if input_is_dc:
+        xyb_values = symbol.get_xybpoints()
+        xyb_cleaned = removeZero(xyb_values)
+        sampled_symbol = sampler(xyb_cleaned, thr)
+        feature_symbol = norm_dist_slope(sampled_symbol,thr)
+    else:
+        xyb_cleaned = removeZero(xyb_values)
+        sampled_symbol = sampler(xyb_cleaned, thr)
+        feature_symbol = norm_dist_slope(sampled_symbol,thr)
+ 
     return feature_symbol, sampled_symbol
