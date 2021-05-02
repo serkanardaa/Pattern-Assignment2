@@ -51,13 +51,15 @@ def main():
     t2 = np.array(range(0,stroke_dist2.shape[1]))
     x2 = stroke_dist2[0]
     y2 = stroke_dist2[1]
+
+    # Original drawing
     # combined pixel values of all strokes for symbol-1
-    comb_stroke_list1 = stroke_dist1 
+    comb_stroke_list1 = get1_clean
     # combined pixel values of all strokes for symbol-2
-    comb_stroke_list2 = stroke_dist2
+    comb_stroke_list2 = get2_clean
 
 
-
+    
     f, axarr = plt.subplots(3, 2)
     f.suptitle('Character Check', fontsize=20)
     #Drawing of symbol-1
