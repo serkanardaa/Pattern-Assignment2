@@ -7,17 +7,16 @@ from CharacterFeatureExtractor import *
 
 #CASE FOR SHOWING THE EFFECT OF SAMPLING
 #Get symbol-1
-dc1 = DrawCharacter()
-dc1.run()
+dc1 = np.load("A_low_left.npy")
+
 #Get symbol-2
-dc2 = DrawCharacter()
-dc2.run()
+dc2 = np.load("A_low_right.npy")
+
 #Cleaning of symbol-1 data from b=0
-get1 = dc1.get_xybpoints()
-get1_clean = start_end_definer(get1)
+get1_clean = start_end_definer(dc1)
 #Cleaning of symbol-2 data from b=0
-get2 = dc2.get_xybpoints()
-get2_clean = start_end_definer(get2)
+
+get2_clean = start_end_definer(dc2)
 
 #strokes are returned as a list
 org_stroke_list1 = strokeDivider(get1_clean)
