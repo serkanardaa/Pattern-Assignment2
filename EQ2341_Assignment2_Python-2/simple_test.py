@@ -4,14 +4,15 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
 from DrawCharacter import DrawCharacter
+from legacy.removeZero import removeZero
 from functions.start_end_definer import *
 from functions.strokeDivider import *
 from functions.relativeDistance import *
 from functions.scaleData import *
 from functions.dist_and_slope import *
+from functions.centerData import centerData
 
 def main():
-    
     #Get symbol-1
     dc1 = DrawCharacter()
     dc1.run()
@@ -22,36 +23,23 @@ def main():
     get1 = dc1.get_xybpoints()
     get2 = dc2.get_xybpoints()
     """
-    
     get1 = np.load("small_o.npy")
     get2 = np.load("big_o.npy")
     """
     #Cleaning of symbol-1 data from b=0
-    get1_clean = start_end_definer(get1)
+    get1_clean = removeZero(get1)
     #Cleaning of symbol-2 data from b=0
-    get2_clean = start_end_definer(get2)
+    get2_clean = removeZero(get2)
 
-    print(get1.shape)
+    center_clean1 = centerData(get1_clean)
+    center_clean2 = centerData(get2_clean)
 
-    #strokes are returned as a list
-    stroke_list1 = strokeDivider(get1_clean)
-    stroke_list2 = strokeDivider(get2_clean)
+    scale = 100
+    feature_vector1 = scaleData(center_clean1, scale)
+    feature_vector2 = scaleData(center_clean2, scale)
 
-    print(len(stroke_list1))
-
-    print(stroke_list1[0].shape)
-
-    
-    scale = 200
-    #stroke_list1 = scaleData(stroke_list1, scale)
-    #stroke_list2 = scaleData(stroke_list2,scale)
-    
-    
-    #strokes are combined and relative distances are calculated
-    #stroke_dist1 = relativeDistance(stroke_list1)
-    #stroke_dist2 = relativeDistance(stroke_list2)
-    stroke_dist1 = dist_and_slope(stroke_list1[0])
-    stroke_dist2 = dist_and_slope(stroke_list2[0])
+    stroke_dist1 = feature_vector1
+    stroke_dist2 = feature_vector2
 
     print(stroke_dist1.shape)
 
@@ -64,9 +52,9 @@ def main():
     x2 = stroke_dist2[0]
     y2 = stroke_dist2[1]
     # combined pixel values of all strokes for symbol-1
-    comb_stroke_list1 = np.concatenate(stroke_list1,axis = 1)
+    comb_stroke_list1 = stroke_dist1 
     # combined pixel values of all strokes for symbol-2
-    comb_stroke_list2 = np.concatenate(stroke_list2,axis = 1)
+    comb_stroke_list2 = stroke_dist2
 
 
 
@@ -107,7 +95,6 @@ def main():
     axarr[2, 1].set(xlabel = "Time", ylabel = "Y-wise distance")
 
     plt.show()
-
 
 if __name__ == "__main__":
     main()

@@ -2,7 +2,7 @@ import numpy as np
 from functions.distCalc import totDist 
 from functions.centerData import centerData
 
-def scaleData(strokes, scale):
+def scaleData(data, scale):
     
     # Average distance normalization scaling
     #   1. Divide total amount of samples for each stroke proportionally
@@ -23,16 +23,23 @@ def scaleData(strokes, scale):
     # Input: strokes list [(2,L1),(2,L2),...,(2,Ln)]  containing n strokes relative distances
     # Output: scale [int] which is a sum of all the distances in the stroke
     tot_d = 0
-    for stroke in strokes:
-        tot_d = tot_d + totDist(stroke)
-    
-    rescale = tot_d / scale
+    # Detect if stroke list is input
+    if str(type(data)) == "<class 'list'>":
+        strokes = data
+        for stroke in strokes:
+            tot_d = tot_d + totDist(stroke)
+        
+        rescale = tot_d / scale
 
-    for stroke in range(len(strokes)):
-        #strokes[stroke] = centerData(strokes[stroke])
-        strokes[stroke] = strokes[stroke] / rescale 
-    return strokes
-
+        for stroke in range(len(strokes)):
+            #strokes[stroke] = centerData(strokes[stroke])
+            strokes[stroke] = strokes[stroke] / rescale 
+        return strokes
+    else:
+        tot_d = totDist(data)
+        rescale = tot_d / scale
+        data = data / rescale 
+        return data
 
 """
         for j in range(strokes[stroke].shape[0]):
