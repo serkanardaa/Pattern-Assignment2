@@ -123,7 +123,7 @@ def featureExtractor(symbol,thr, input_is_dc = True):
         sampled_symbol = sampler(xyb_cleaned, thr)
         feature_symbol = norm_dist_slope(sampled_symbol,thr)
     else:
-        xyb_cleaned = removeZero(xyb_values)
+        xyb_cleaned = removeZero(symbol)
         sampled_symbol = sampler(xyb_cleaned, thr)
         feature_symbol = norm_dist_slope(sampled_symbol,thr)
  
