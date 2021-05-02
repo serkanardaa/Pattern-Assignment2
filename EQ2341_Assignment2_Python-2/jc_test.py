@@ -1,13 +1,13 @@
-from tkinter import *
 import numpy as np
 import time 
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
+
 from DrawCharacter import DrawCharacter
 from start_end_definer import *
-from strokeDivider import *
-from relativeDistance import *
-from scaleData import *
+from functions.strokeDivider import *
+from functions.relativeDistance import *
+from functions.scaleData import *
 
 def main():
     
