@@ -3,14 +3,26 @@
 import numpy as np
 from DrawCharacter import *
 
-ch1 = DrawCharacter()
-ch1.run()
+end = False
 
-pts = ch1.get_xybpoints()
+while not end:
+    try:
+        ch1 = DrawCharacter()
+        ch1.run()
+    except KeyboardInterrupt:
+        print("User end")
+        end = True
+        continue
 
-name = input("What do you want to save the file as?")
+    pts = ch1.get_xybpoints()
 
-np.save(str(name)+".npy",pts)
+    try:
+        name = input("What do you want to save the file as?")
+    except EOFError:
+        continue
+
+    np.save(str(name)+".npy",pts)
+
 """
 with open(str(name)+".d","w") as file:
     for row in range(pts.shape[0]):  # prints each row on a separate line
