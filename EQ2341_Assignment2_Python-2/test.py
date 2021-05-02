@@ -8,6 +8,7 @@ from DrawCharacter import DrawCharacter
 from start_end_definer import *
 from strokeDivider import *
 from relativeDistance import *
+from dist_and_slope import *
 
 
 
@@ -31,8 +32,14 @@ stroke_list1 = strokeDivider(get1_clean)
 stroke_list2 = strokeDivider(get2_clean)
 
 #strokes are combined and relative distances are calculated
-stroke_dist1 = relativeDistance(stroke_list1)
-stroke_dist2 = relativeDistance(stroke_list2)
+# stroke_dist1 = relativeDistance(stroke_list1)
+# stroke_dist2 = relativeDistance(stroke_list2)
+
+stroke_dist1 = dist_and_slope(stroke_list1[0])
+stroke_dist2 = dist_and_slope(stroke_list2[0])
+
+# stroke_dist1 = dist_and_slope(np.concatenate(stroke_list1,axis = 1) )
+# stroke_dist2 = dist_and_slope(np.concatenate(stroke_list2,axis = 1) )
 
 
 
