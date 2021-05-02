@@ -1,9 +1,18 @@
-from tkinter import *
 import numpy as np
-import time 
 
 def sampler(coordinates,thr):
+# Removes all samples for which the distance from the previous point is less than a given threshold
+#
+# Input:    coordinates         clean data from DrawCharacter with only x,y (2,L)
+#           thr                 lower threshold bound for distances when removing samples
+#
+# Output:   sampled_coordinates sampled data (2,L-removed_samples)      
+
     rel_dist = np.diff(coordinates)
+    #calculating absolute distances between each sample
+    abs_dist = np.sqrt(    np.square(rel_dist[0,:]) + np.square(rel_dist[1,:])    )
+    #vector for indices of output samples. Starting with keeping the first sample
+     rel_dist = np.diff(coordinates)
     #calculating absolute distances between each sample
     abs_dist = np.sqrt(    np.square(rel_dist[0,:]) + np.square(rel_dist[1,:])    )
     #vector for indices of output samples. Starting with keeping the first sample

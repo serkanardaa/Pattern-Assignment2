@@ -1,9 +1,16 @@
-from tkinter import *
 import numpy as np
-import time 
 
 def norm_dist_slope(coordinates,thr):
-    
+# Calculates a metric for scale of the symbol which is used to normalize large distances between two samples.
+# Adds the large distance to the remaining values.
+# Calculates the polar coordinates (absolute distance and slope) of the input coordinates and adds random noise to avoid zero variance.
+#  
+# 
+# Input:    coordinates         sampled data (2,L-removed_samples)
+#           thr                 threshold used to downsample, used to calculate "large" distances
+# 
+# Output:   dist_slope          polar coordinates with distance increased at each large distance increment
+   
     #Calculation of maximum distance in the symbol to get an idea about scale of it
     init_coor = coordinates[:,0]
     init_coor = init_coor.reshape((init_coor.size,1))
